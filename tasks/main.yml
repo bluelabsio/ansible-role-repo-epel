@@ -11,10 +11,10 @@
   until: '"failed" not in result'
   retries: 5
   delay: 10
-  when: epel_repofile.exists == False
+  when: epel_repofile.stat.exists == False
 
 - name: Import EPEL GPG key.
   rpm_key:
     key: "{{ epel_repo_gpg_key_url }}"
     state: present
-  when: epel_repofile.exists == False
+  when: epel_repofile.stat.exists == False
